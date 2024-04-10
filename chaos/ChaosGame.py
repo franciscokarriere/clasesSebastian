@@ -29,9 +29,9 @@ class ChaosGame:
         #Llamado a funciones
         self.generate_vertices()
         self.plot_vertices()
-       # self.generate_midpoints()
+        self.generate_midpoints()
     
-    #Funcion para generar vertices
+    #Funcion para generar vertices, se definen los puntos estaticos para el canva 600x520
     # v1, v2, v3 ← three vertices of an equilateral triangle
     def generate_vertices(self):
         self.vertices.append(Point(100,400))
@@ -41,6 +41,39 @@ class ChaosGame:
     def plot_vertices(self):
         for vertex in self.vertices:
             self.canvas.create_oval(vertex.get_x() -3, vertex.get_y() - 3, vertex.get_x() +3, vertex.get_y() + 3, fill="blue")
+
+
+# plot v1, v2, and v3
+# p1, p2 ← two randomly selected vertices from v1, v2, and v3 m ← the midpoint of p1 and 
+    def generate_midpoints(self):
+        #Seleccion random de dos puntos p1, p2
+        p1 = random.choice(self.vertices)
+        p2 = random.choice(self.vertices)
+        #m ← the midpoint of p1 and p2
+        #Se calcula el punto medio de x e y
+        mx = (p1.get_x() + p2.get_x())/2
+        my = (p1.get_y() + p2.get_y())/2
+
+        punto = Point(mx,my)
+        self.midpoints.append(punto)
+        
+        while len(self.midpoints) < 1500:
+            # v ← a randomly selected vertex from v1, v2, and v3
+            v = random.choice(self.vertices)
+            # m’ ← the midpoint of m and v
+            m_prime_x = (self.midpoints[-1].get_x() + v.get_x())/2
+            m_prime_y = (self.midpoints[-1].get_y() + v.get_y())/2
+            self.midpoints.append(Point(m_prime_x, m_prime_y))
+
+    def plot_midpoints(self):
+        for midpoint in self.midpoints:
+            self.canvas.create_oval(midpoint.get_x() - 1, midpoint.get_y() - 1, midpoint.get_x() + 1, midpoint.get_y() + 1, fill="red")
+
+        
+
+
+        
+
 
 root = tk.Tk()
 chaos_game = ChaosGame(root)
