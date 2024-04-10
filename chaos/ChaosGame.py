@@ -30,6 +30,7 @@ class ChaosGame:
         self.generate_vertices()
         self.plot_vertices()
         self.generate_midpoints()
+        self.plot_midpoints()
     
     #Funcion para generar vertices, se definen los puntos estaticos para el canva 600x520
     # v1, v2, v3 ← three vertices of an equilateral triangle
@@ -67,7 +68,7 @@ class ChaosGame:
 
     def plot_midpoints(self):
         for midpoint in self.midpoints:
-            self.canvas.create_oval(midpoint.get_x() - 1, midpoint.get_y() - 1, midpoint.get_x() + 1, midpoint.get_y() + 1, fill="red")
+            self.canvas.create_oval(midpoint.get_x() - 1, midpoint.get_y() - 1, midpoint.get_x() + 1, midpoint.get_y() + 1, fill="black")
 
         
 
