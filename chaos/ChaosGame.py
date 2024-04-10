@@ -29,7 +29,7 @@ class ChaosGame:
         #Llamado a funciones
         self.generate_vertices()
         self.plot_vertices()
-        self.generate_midpoints()
+       # self.generate_midpoints()
     
     #Funcion para generar vertices
     # v1, v2, v3 ← three vertices of an equilateral triangle
@@ -39,4 +39,9 @@ class ChaosGame:
         self.vertices.append(Point(500,400))
         
     def plot_vertices(self):
-        
+        for vertex in self.vertices:
+            self.canvas.create_oval(vertex.get_x() -3, vertex.get_y() - 3, vertex.get_x() +3, vertex.get_y() + 3, fill="blue")
+
+root = tk.Tk()
+chaos_game = ChaosGame(root)
+root.mainloop()
